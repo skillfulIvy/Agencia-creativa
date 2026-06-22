@@ -5,20 +5,22 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: transparent;
-  border-bottom: 1px solid transparent;
-  transition: background-color var(--rapido), border-color var(--rapido);
-}
-.navbar--scroll {
-  background-color: rgba(246, 244, 239, 0.88);
-  backdrop-filter: blur(10px);
-  border-bottom-color: var(--line);
+  padding: 16px 20px 0;
 }
 .navbar__fila {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 28px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  transition: background-color var(--rapido), border-color var(--rapido);
+}
+.navbar--scroll .navbar__fila {
+  background-color: rgba(246, 244, 239, 0.82);
+  backdrop-filter: blur(14px);
+  border-color: var(--line);
 }
 .navbar__marca {
   font-family: var(--display);
@@ -29,17 +31,36 @@
   color: var(--coral);
 }
 .navbar__links {
+  position: relative;
   display: none;
   align-items: center;
-  gap: 32px;
+  gap: 4px;
 }
 .navbar__links a:not(.boton) {
+  position: relative;
+  z-index: 1;
+  padding: 8px 14px;
   font-size: 0.92rem;
   color: var(--ink-soft);
   transition: color var(--rapido);
 }
 .navbar__links a:not(.boton):hover {
   color: var(--ink);
+}
+.navbar__links .boton--sm {
+  margin-left: 12px;
+}
+.navbar__pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.07);
+  border-radius: 999px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 0;
 }
 .boton--sm {
   padding: 9px 18px;
@@ -72,11 +93,12 @@
   grid-template-rows: minmax(0, 0fr);
   overflow: hidden;
   background-color: var(--paper);
-  border-bottom: 1px solid var(--line);
-  transition: grid-template-rows var(--medio);
+  border-bottom: 1px solid transparent;
+  transition: grid-template-rows var(--medio), border-color var(--medio);
 }
 .navbar__movil.abierto {
   grid-template-rows: minmax(0, 1fr);
+  border-bottom-color: var(--line);
 }
 .navbar__movil-inner {
   min-height: 0;
@@ -114,7 +136,66 @@
    HERO — tipográfico, sin imagen de fondo
 ========================================= */
 .hero {
-  padding: 160px 0 120px;
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 72px;
+}
+
+@media (min-width: 760px) {
+  .hero {
+    padding: 160px 0 120px;
+  }
+}
+
+.hero__forma {
+  position: absolute;
+  top: -10%;
+  right: -8%;
+  width: min(60vw, 620px);
+  height: min(60vw, 620px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--coral) 0%, rgba(255, 90, 95, 0) 70%);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .contenedor {
+  position: relative;
+  z-index: 1;
+}
+
+.gooey {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+.gooey__svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.gooey__capa {
+  position: relative;
+  display: inline-block;
+}
+.gooey__texto {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+.gooey__texto:first-child {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gooey__texto {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+  .gooey__texto:last-child {
+    display: none;
+  }
 }
 .hero__eyebrow {
   font-family: var(--mono);
@@ -151,6 +232,72 @@
 }
 
 /* =========================================
+   FILOSOFÍA — declaración corta, sin tarjeta
+========================================= */
+.filosofia {
+  padding: 80px 0 100px;
+}
+.filosofia__grid {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+.filosofia__texto {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.filosofia__visual {
+  position: relative;
+  padding: 40px 8px 0;
+}
+.filosofia__comilla {
+  position: absolute;
+  top: -64px;
+  right: 0;
+  font-family: var(--display);
+  font-size: 9rem;
+  line-height: 1;
+  color: var(--coral);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.filosofia__cifras {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.filosofia__cifra {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.filosofia__numero {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--coral);
+  letter-spacing: -0.02em;
+  min-width: 3ch;
+}
+.filosofia__etiqueta {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 860px) {
+  .filosofia__grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+/* =========================================
    SELECTED WORK
 ========================================= */
 .trabajo {
@@ -170,31 +317,73 @@
   font-size: 1rem;
 }
 
-.trabajo__lista {
-  display: flex;
-  flex-direction: column;
-}
-.trabajo__item {
+.trabajo__grid {
   display: grid;
-  gap: 28px;
-  padding: 40px 0;
-  border-top: 1px solid var(--line);
-  transition: opacity var(--rapido);
-}
-.trabajo__lista .trabajo__item:last-child {
-  border-bottom: 1px solid var(--line);
+  gap: 64px;
 }
 
-.trabajo__visual {
+.trabajo__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  opacity: 0;
+  transform: translateY(36px);
+  clip-path: inset(0 0 12% 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.trabajo__item.en-vista {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0% 0);
+}
+
+.trabajo__indice {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 9vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.trabajo__visual-caja {
+  position: relative;
+  overflow: hidden;
   aspect-ratio: 4 / 3;
   background-color: var(--ink);
+}
+.trabajo__visual {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
-  filter: grayscale(15%);
-  transition: filter var(--medio);
+  filter: grayscale(20%);
+  transform: scale(1);
+  transition: filter var(--medio), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .trabajo__item:hover .trabajo__visual {
   filter: grayscale(0%);
+  transform: scale(1.06);
+}
+.trabajo__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 16px 20px;
+  background-color: var(--coral);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.trabajo__item:hover .trabajo__overlay {
+  transform: translateY(0%);
 }
 
 .trabajo__meta {
@@ -219,12 +408,79 @@
 }
 
 @media (min-width: 760px) {
-  .trabajo__item {
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
+  .trabajo__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .trabajo__item:nth-child(even) .trabajo__visual {
-    order: 2;
+  .trabajo__item--feature {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+  .trabajo__item--feature .trabajo__indice {
+    flex: 0 0 auto;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .trabajo__item--feature .trabajo__visual-caja {
+    flex: 1.3;
+    aspect-ratio: 16 / 10;
+  }
+  .trabajo__item--feature .trabajo__cuerpo {
+    flex: 1;
+  }
+  .trabajo__item--mitad:nth-of-type(2) {
+    margin-top: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trabajo__item {
+    transition: opacity 0.3s linear;
+    transform: none;
+    clip-path: none;
+  }
+  .trabajo__visual,
+  .trabajo__overlay {
+    transition: opacity 0.2s linear;
+  }
+  .trabajo__item:hover .trabajo__visual {
+    transform: none;
+  }
+}
+
+/* =========================================
+   MARCAS — marquee de prueba social
+========================================= */
+.marcas {
+  border-top: 1px solid var(--line);
+  background-color: var(--paper-dim);
+  padding: 28px 0;
+  overflow: hidden;
+}
+.marcas__pista {
+  display: flex;
+  width: max-content;
+  gap: 64px;
+  animation: marcas-desfile 28s linear infinite;
+}
+.marcas__item {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+@keyframes marcas-desfile {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marcas__pista {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
   }
 }
 
@@ -318,13 +574,97 @@
 }
 
 /* =========================================
-   CONTACTO
+   FAQ
 ========================================= */
-.contacto {
-  padding: 120px 0;
+.faq {
+  padding: 100px 0;
+  border-top: 1px solid var(--line);
+  background-color: var(--paper-dim);
+}
+.faq .titulo-seccion {
+  margin-bottom: 48px;
+}
+.faq__lista {
+  max-width: 760px;
+}
+.faq__item {
   border-top: 1px solid var(--line);
 }
+.faq__lista .faq__item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.faq__pregunta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  text-align: left;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.faq__icono {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--coral);
+}
+.faq__respuesta-caja {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--medio);
+}
+.faq__respuesta-caja.abierta {
+  grid-template-rows: 1fr;
+}
+.faq__respuesta {
+  min-height: 0;
+  overflow: hidden;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  padding-bottom: 0;
+  transition: padding-bottom var(--medio);
+}
+.faq__respuesta-caja.abierta .faq__respuesta {
+  padding-bottom: 24px;
+}
+
+/* =========================================
+   CONTACTO — fondo aurora sutil
+========================================= */
+.contacto {
+  position: relative;
+  padding: 120px 0;
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+.contacto::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10%;
+  background-image:
+    radial-gradient(38% 45% at 18% 22%, rgba(255, 90, 95, 0.16), transparent 70%),
+    radial-gradient(32% 40% at 82% 78%, rgba(255, 90, 95, 0.12), transparent 70%),
+    radial-gradient(45% 50% at 70% 15%, rgba(17, 17, 17, 0.05), transparent 70%);
+  filter: blur(30px);
+  animation: aurora-flotar 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes aurora-flotar {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(2%, -3%, 0) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contacto::before {
+    animation: none;
+  }
+}
 .contacto__caja {
+  position: relative;
+  z-index: 1;
   text-align: center;
   display: flex;
   flex-direction: column;

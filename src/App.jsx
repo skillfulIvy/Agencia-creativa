@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Philosophy from './components/Philosophy';
 import Work from './components/Work';
+import Clients from './components/Clients';
 import Services from './components/Services';
 import Process from './components/Process';
+import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './App.css';
@@ -45,9 +48,12 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Philosophy />
         <Work />
+        <Clients />
         <Services />
         <Process />
+        <Faq />
         <Contact />
       </main>
       <Footer />
