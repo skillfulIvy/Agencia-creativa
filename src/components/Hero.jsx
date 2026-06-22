@@ -17,7 +17,9 @@ export default function Hero() {
             Brand systems, experiencias digitales y motion. Trabajamos con
             fundadores que quieren una marca con criterio, no una plantilla.
           </p>
-          <a href="#trabajo" className="boton boton--linea">Ver trabajo →</a>
+          <a href="#trabajo" className="boton boton--linea">
+            Ver trabajo <span>→</span>
+          </a>
         </div>
       </div>
     </section>

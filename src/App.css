@@ -42,10 +42,17 @@
   padding: 8px 14px;
   font-size: 0.92rem;
   color: var(--ink-soft);
-  transition: color var(--rapido);
+  transition: color var(--rapido), transform var(--rapido);
 }
 .navbar__links a:not(.boton):hover {
   color: var(--ink);
+  transform: translateY(-1px);
+}
+.navbar__marca {
+  transition: opacity var(--rapido);
+}
+.navbar__marca:hover {
+  opacity: 0.7;
 }
 .navbar__links .boton--sm {
   margin-left: 12px;
@@ -506,6 +513,13 @@
   gap: 16px 24px;
   padding: 32px 0;
   border-top: 1px solid rgba(246, 244, 239, 0.15);
+  transition: padding-left var(--rapido);
+}
+.fila-servicio:hover {
+  padding-left: 12px;
+}
+.fila-servicio:hover .fila-servicio__num {
+  color: var(--paper);
 }
 .lista-servicios .fila-servicio:last-child {
   border-bottom: 1px solid rgba(246, 244, 239, 0.15);
@@ -514,6 +528,7 @@
   font-family: var(--mono);
   color: var(--coral);
   font-size: 0.95rem;
+  transition: color var(--rapido);
 }
 .fila-servicio__titulo {
   font-family: var(--display);
@@ -554,6 +569,17 @@
 .proceso__paso {
   padding-top: 20px;
   border-top: 2px solid var(--ink);
+  transition: border-color var(--rapido), transform var(--rapido);
+}
+.proceso__paso:hover {
+  border-color: var(--coral);
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proceso__paso:hover {
+    transform: none;
+  }
 }
 .proceso__paso h3 {
   font-family: var(--display);
@@ -604,12 +630,21 @@
   font-family: var(--display);
   font-weight: 700;
   font-size: 1.05rem;
+  color: var(--ink);
+  transition: color var(--rapido);
+}
+.faq__pregunta:hover {
+  color: var(--coral);
 }
 .faq__icono {
   flex-shrink: 0;
   font-family: var(--mono);
   font-size: 1.2rem;
   color: var(--coral);
+  transition: transform var(--rapido);
+}
+.faq__pregunta:hover .faq__icono {
+  transform: scale(1.2);
 }
 .faq__respuesta-caja {
   display: grid;
@@ -705,12 +740,26 @@
   gap: 24px;
 }
 .footer__links a {
+  position: relative;
   font-size: 0.88rem;
   color: var(--ink-soft);
   transition: color var(--rapido);
 }
+.footer__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: var(--coral);
+  transition: width var(--rapido);
+}
 .footer__links a:hover {
   color: var(--ink);
+}
+.footer__links a:hover::after {
+  width: 100%;
 }
 .footer__legal {
   font-size: 0.85rem;

@@ -92,7 +92,14 @@ button {
   border: 1px solid var(--ink);
   font-size: 0.95rem;
   font-weight: 500;
-  transition: background-color var(--rapido), color var(--rapido), border-color var(--rapido);
+  transition: background-color var(--rapido), color var(--rapido),
+    border-color var(--rapido), transform var(--rapido);
+}
+.boton:hover {
+  transform: translateY(-2px);
+}
+.boton:active {
+  transform: translateY(0);
 }
 .boton--solido {
   background-color: var(--ink);
@@ -106,6 +113,19 @@ button {
 .boton--linea:hover {
   border-color: var(--coral);
   color: var(--coral);
+}
+.boton span,
+.boton svg {
+  transition: transform var(--rapido);
+}
+.boton:hover span:last-child {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton:hover {
+    transform: none;
+  }
 }
 
 /* Reveal al hacer scroll, gateado por .js-activo: si JS falla, el contenido
